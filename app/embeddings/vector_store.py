@@ -2,12 +2,10 @@ from langchain_core.vectorstores import FAISS
 from .embedder import get_embeddings_from_chunks as embed_chunks
 
 def build_vector_store(chunks: list[str]):
+    save_path = "vector_store"
     embedder, chunks = embed_chunks(chunks)
     vector_store = FAISS.from_texts(chunks, embedder)
-    return vector_store
+    vector_store.save_local(save_path)
+    return save_path
 
-# Step 4: Perform semantic similarity search
-def semantic_search(vector_store: FAISS, query: str, k: int = 3):
-    results = vector_store.similarity_search(query, k=k)
-    return results
 

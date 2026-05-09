@@ -4,3 +4,4 @@ python-multipart
 PYPDF2
 langchain_core
 langchain_text_splitters
+langchain-google-genai
