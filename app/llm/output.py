@@ -13,7 +13,7 @@ def answer_query_with_context(chunks: list[str], query: str) -> str:
     Returns:
         str: Model-generated answer.
     """
-    llm = ChatGoogleGenerativeAI(model="gemini-pro", temperature=0.2)
+    llm = ChatGoogleGenerativeAI(model="gemini-3.1-flash-lite-preview", temperature=0.2)
 
     context = "\n\n".join(chunks)
 
