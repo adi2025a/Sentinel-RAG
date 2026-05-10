@@ -1,6 +1,7 @@
 from fastapi import FastAPI, UploadFile, File, Query, HTTPException, Depends
 from fastapi.responses import JSONResponse
-from ingestion.data_ingestion import data_ingestion
+from tests.rag_test import ingestion_test , query_test
+
 
 app = FastAPI()
 
@@ -18,7 +19,7 @@ async def upload_pdf(
     authorized: bool = Depends(admin_auth)
 ):
     contents = await file.read()
-    data_ingestion(contents)
+    ingestion_test(contents)
     return JSONResponse(content={
         "filename": file.filename,
         "content_type": file.content_type,
@@ -29,8 +30,9 @@ async def upload_pdf(
 @app.get("/user/query/")
 async def user_query(query: str = Query(..., description="User query string")):
     # For demo, just echo the query back
+    answer = query_test(query)
     response = {
         "query": query,
-        "answer": f"You asked: '{query}'. Here is a placeholder response."
+        "answer": answer
     }
     return JSONResponse(content=response)

@@ -1,7 +1,7 @@
 from langchain_core.vectorstores import FAISS
 from embeddings.embedder import get_embedder
 
-def load_vector_store(save_path: str = "faiss_index"):
+def load_vector_store(save_path: str = "vector_store"):
     """
     Load a saved FAISS vector store.
     
@@ -15,7 +15,7 @@ def load_vector_store(save_path: str = "faiss_index"):
     vector_store = FAISS.load_local(save_path, embedder, allow_dangerous_deserialization=True)
     return vector_store
 
-def search_query(query: str, save_path: str = "faiss_index", k: int = 3):
+def search_query(query: str, save_path: str = "vector_store", k: int = 3):
     """
     Perform semantic similarity search on a saved FAISS vector store.
     
