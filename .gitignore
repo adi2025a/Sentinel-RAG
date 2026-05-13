@@ -58,3 +58,7 @@ docker/tmp/
 # OS files
 .DS_Store
 Thumbs.db
+
+
+# Manual
+vector_store/
