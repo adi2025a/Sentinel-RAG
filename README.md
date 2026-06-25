@@ -139,6 +139,8 @@ Real-time monitoring dashboard showing:
 - Query history
 - Active document
 
+![Alternative Text](readme_images/1.png)
+
 ---
 
 # 📂 Project Structure
@@ -277,6 +279,8 @@ Output:
 Decision: ALLOW
 Risk Score: 0.27
 ```
+
+![Alternative Text](readme_images/3.png)
 
 ---
 
