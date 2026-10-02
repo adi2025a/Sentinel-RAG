@@ -1,0 +1,4 @@
+{"id": "ret_001", "input": "What is Aditya Singh's email address and phone number?", "expected_output": "Aditya Singh's email address is aadityasinghas13@gmail.com and his phone number is +91 9149031714."}
+{"id": "ret_002", "input": "What are Aditya's key technical skills in Generative AI?", "expected_output": "His GenAI skills include multi-agent systems, agentic RAG, LangChain, LangGraph, prompt engineering, prompt injection detection, LLM evaluation, and RAG evaluation."}
+{"id": "ret_003", "input": "What machine learning libraries and tools does Aditya work with?", "expected_output": "Aditya works with PyTorch, Transformers, Scikit-learn, deep learning, embedding models, classical ML, and computer vision."}
+{"id": "ret_004", "input": "What backend engineering technologies does Aditya have experience with?", "expected_output": "Aditya has experience with FastAPI and REST APIs for backend engineering and AI infrastructure."}
