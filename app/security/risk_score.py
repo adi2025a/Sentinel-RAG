@@ -20,8 +20,8 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from enum import Enum
 
-from app.security.PID.regex_detector import RegexDetector, DetectionResult, RiskLevel
-import app.security.PID.attack_classifier as semantic
+from app.security.regex_detector import RegexDetector, DetectionResult, RiskLevel
+import app.security.semantic_classifier as semantic
 
 
 # ---------------------------------------------------------------------------
@@ -77,7 +77,7 @@ class PIDPipeline:
         self,
         block_threshold:   float     = 0.65,
         review_threshold:  float     = 0.40,
-        semantic_weight:   float     = 0.60,
+        semantic_weight:   float     = 1.0,
         skip_semantic_on:  RiskLevel = RiskLevel.CRITICAL,
         top_k:             int       = 5,
     ):
@@ -123,7 +123,7 @@ class PIDPipeline:
 
         # Map fused score back to RiskLevel
         if fused == 0.0:         risk = RiskLevel.SAFE
-        elif fused < 0.40:       risk = RiskLevel.LOW
+        elif fused < 0.50:       risk = RiskLevel.LOW
         elif fused < 0.65:       risk = RiskLevel.MEDIUM
         elif fused < 0.90:       risk = RiskLevel.HIGH
         else:                    risk = RiskLevel.CRITICAL

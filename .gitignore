@@ -60,5 +60,8 @@ docker/tmp/
 Thumbs.db
 
 
-# Manual
-vector_store/
+# Runtime Data & Vector Store
+data/vector_store/
+evals/reports/*.json
+evals/reports/*.md
+!evals/reports/.gitkeep

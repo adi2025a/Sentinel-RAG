@@ -16,6 +16,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, UploadFile, File, Query, Header, HTTPException, Depends
 from fastapi.responses import JSONResponse
 
+from app.config import settings
 from app.core.pipeline import SentinelPipeline, IngestStatus, Decision
 from app.utils.logger import get_logger
 
@@ -27,9 +28,9 @@ logger = get_logger(name=__name__)
 # ---------------------------------------------------------------------------
 
 pipeline = SentinelPipeline(
-    pid_block_threshold  = float(os.getenv("PID_BLOCK_THRESHOLD",  "0.65")),
-    pid_review_threshold = float(os.getenv("PID_REVIEW_THRESHOLD", "0.40")),
-    retrieval_top_k      = int(os.getenv("RETRIEVAL_TOP_K",        "4")),
+    pid_block_threshold  = settings.PID_BLOCK_THRESHOLD,
+    pid_review_threshold = settings.PID_REVIEW_THRESHOLD,
+    retrieval_top_k      = settings.RETRIEVAL_TOP_K,
 )
 
 
@@ -55,7 +56,8 @@ app = FastAPI(
 # Auth dependency
 # ---------------------------------------------------------------------------
 
-ADMIN_TOKEN = os.getenv("ADMIN_TOKEN")   
+ADMIN_TOKEN = settings.ADMIN_TOKEN
+   
 
 def require_admin(x_admin_token: str = Header(..., description="Admin bearer token")):
     """
