@@ -96,6 +96,7 @@ def run_generator_evaluation(
             input=query,
             actual_output=actual_output,
             expected_output=expected_output,
+            context=retrieval_context,
             retrieval_context=retrieval_context,
         )
 
