@@ -10,6 +10,7 @@ Usage:
 
 import argparse
 from eval.retriever.run_retriever_eval import run_retriever_evaluation
+from eval.generator.run_generator_eval import run_generator_evaluation
 
 
 def main():
@@ -20,7 +21,7 @@ def main():
     parser.add_argument(
         "--type",
         choices=["retriever", "generator", "all"],
-        default="retriever",
+        default="generator",
         help="Evaluation target",
     )
     parser.add_argument(
@@ -50,15 +51,27 @@ def main():
 
     args = parser.parse_args()
 
-    if args.type == "retriever":
+    if args.type in ("retriever", "all"):
+        print("\n" + "=" * 60)
+        print("STAGE 1: RETRIEVER EVALUATION")
+        print("=" * 60)
         run_retriever_evaluation(
             dataset_path=args.dataset,
             top_k=args.top_k,
             threshold=args.threshold,
             judge_model=args.judge_model,
         )
-    else:
-        print(f"Evaluation type '{args.type}' is coming up next!")
+
+    if args.type in ("generator", "all"):
+        print("\n" + "=" * 60)
+        print("STAGE 2: GENERATOR (LLM) EVALUATION")
+        print("=" * 60)
+        run_generator_evaluation(
+            dataset_path=args.dataset,
+            top_k=args.top_k,
+            threshold=args.threshold,
+            judge_model=args.judge_model,
+        )
 
 
 if __name__ == "__main__":
